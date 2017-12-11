@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EatWhere</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <% if current_user %>
+        <div class="d-flex justify-content-start">
+          <h1 class="navLogo">EAT WHERE</h1>
+        </div>
+        <div class="d-flex justify-content-start">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Restaurants
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button"><%= link_to "Your Restaurants", restaurants_path %></button>
+                <button class="dropdown-item" type="button"><%= link_to "Add a Restaurant", new_restaurant_path %></button>
+              </div>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Events
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button"><%= link_to "All Events", events_path %></button>                  
+                <button class="dropdown-item" type="button"><%= link_to "Your Events", events_path(current_user.id) %></button>
+                <button class="dropdown-item" type="button"><%= link_to "Add an Event", new_event_path %></button>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle login" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Hello <%= current_user.first_name %> <%= current_user.last_name %>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button"><%= link_to "My Profile", user_path(current_user.id) %></button>              
+                <button class="dropdown-item" type="button"><%= link_to "Edit Profile", edit_user_path(current_user.id) %></button>
+                <button class="dropdown-item" type="button"><%= link_to "Log out", user_sessions_destroy_path %></button>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="d-flex justify-content-start">
+            <h1 class="navLogo">Eat Where</h1>
+          </div>
+          <div class="d-flex justify-content-end">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle login" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login/Register
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button"><%= render 'user_sessions/form' %></button>
+                <button class="dropdown-item" type="button"><%= link_to "Register", new_user_path %></button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </nav>
+    </header>
+      <div>
+        <p id="notice"><%= flash[:notice] %></p>
+        <p id="alert"><%= flash[:alert] %></p>
+      </div>
+    <%= yield %>
+  </body>
+</html>

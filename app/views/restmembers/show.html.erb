@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Restaurant:</strong>
+  <%= @restmember.restaurant_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @restmember.event_id %>
+</p>
+
+<%= link_to 'Edit', edit_restmember_path(@restmember) %> |
+<%= link_to 'Back', restmembers_path %>

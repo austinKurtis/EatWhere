@@ -1,0 +1,27 @@
+<%= form_with(model: restmember, local: true) do |form| %>
+  <% if restmember.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(restmember.errors.count, "error") %> prohibited this restmember from being saved:</h2>
+
+      <ul>
+      <% restmember.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :restaurant_id %>
+    <%= form.number_field :restaurant_id, id: :restmember_restaurant_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_id %>
+    <%= form.number_field :event_id, id: :restmember_event_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
