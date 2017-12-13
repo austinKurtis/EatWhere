@@ -1,66 +1,173 @@
-<p id="notice"><%= notice %></p>
-<p>
-<strong>Name:</strong>
-<%= @event.event_name %>
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <p id="notice"><%= notice %></p>
+            <p>
+                <strong>Name:</strong>
+                <%= @event.event_name %>
+            </p>
 
-<p>
-<strong>Location:</strong>
-<%= @event.event_location %>
-</p>
+            <p>
+                <strong>Location:</strong>
+                <%= @event.event_location %>
+            </p>
 
-<p>
-<strong>Time:</strong>
-<%= @event.event_time %>
-</p>
+            <p>
+                <strong>Time:</strong>
+                <%= @event.event_time %>
+            </p>
 
-<p>
-<strong>Description:</strong>
-<%= @event.event_desc %>
-</p>
+            <p>
+                <strong>Description:</strong>
+                <%= @event.event_desc %>
+            </p>
 
-<p>
-<strong>Event creator:</strong>
-</p>
-<% if current_user.events.include?(@event) %>
-    <p>You're already a member of this event!</p>
+            <p>
+                <strong>Event creator:</strong>
+            </p>
+            <% if current_user.events.include?(@event) %>
+                <p>You're already a member of this event!</p>
+            <% else %>
+                <%= form_with(model: @event, local: true) do |f| %>
+                    <%= f.fields_for :eventmembers do |ff| %>
+                        <%= ff.hidden_field :user_id, :value => current_user.id  %>
+                        <%= ff.hidden_field :event_id, :value => :id  %>
+                    <% end %>
+                    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+                        <i class="fa fa-calendar-check-o"></i> Join
+                    <% end %>
+                <% end %>
 
-<% else %>
-    <%= form_with(model: @event, local: true) do |f| %>
-        <%= f.fields_for :eventmembers do |ff| %>
-            <%= ff.hidden_field :user_id, :value => current_user.id  %>
-            <%= ff.hidden_field :event_id, :value => :id  %>
-        <% end %>
-        <div class="actions">
-            <%= f.submit %>
+            <% end%>
+
+            <button type="button" class="btn btn-default btn-lg">
+                <%= link_to edit_event_path(@event) do %>
+                <i class="fa fa-pencil-square-o text-warning" aria-hidden="true"> Edit</i>    
+                <% end %>  
+            </button>
+
+            <button type="button" class="btn btn-default btn-lg">
+            <%= link_to events_path do %>
+                <i class="fa fa-times" aria-hidden="true"> Close</i>
+            <% end %>  
+            </button>
+            <br>
+            <% if @event.event_winner <= 0 %>
+                <%= form_with(model: @event, local: true) do |f| %>
+                    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+                        <i class="fa fa-calendar-check-o"></i> Where You'll Be Eating
+                    <% end %>
+                <% end %>       
+            <% else %>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Winning Restaunt
+                </button>
+            <% end %>
+                  
         </div>
-    <% end %>
-
-<% end%>
-
-<button type="button" class="btn btn-default btn-lg">
-    <%= link_to edit_event_path(@event) do %>
-    <i class="fa fa-pencil-square-o text-warning" aria-hidden="true"> Edit</i>    
-    <% end %>  
-</button>
-
-<button type="button" class="btn btn-default btn-lg">
-<%= link_to events_path do %>
-    <i class="fa fa-times" aria-hidden="true"> Close</i>
-<% end %>  
-</button>
-
-
-<%= form_with(model: @event, local: true) do |f| %>
-<%= f.fields_for :eventmembers do |ff| %>
-    <%= ff.hidden_field :user_id, :value => current_user.id  %>
-    <%= ff.hidden_field :event_id, :value => :id  %>
-<% end %>
-
-<div class="actions">
-    <%= f.submit %>
+        <div class="col-6">
+            <% if @selectmade %>
+                <div class="row">
+                    <p>You've alreaded chosen a restaurant for this event</p>
+                </div>
+            <%else%>
+            <div class="row">
+                <p><strong>Add Your Restaurant to the event</strong></p>
+            </div>
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" colspan="1"></th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <% @restaurants.each_with_index do |restaurant, index| %>
+                        <tr scope="row">
+                            <td><%= index+1 %></td>
+                            <td><%= restaurant.restaurant_name %></td>
+                            <td><%= restaurant.restaurant_desc %></td>
+                                <%= form_with(model: [@event, @event.restmembers.build]) do |f| %>
+                                    <%= f.hidden_field :user_id, :value => current_user.id  %>
+                                    <%= f.hidden_field :restaurant_id, :value => restaurant.id  %>
+                                    <%= f.hidden_field :event_id, :value => @event.id  %>
+                                <% end %>
+                                <td><%= button_tag(type: 'submit', class: "btn btn-success") do %>
+                                        <i class="fa fa-plus-square"></i> Add Restaurant to Event
+                                    <% end %>
+                                
+                            </td>
+                        </tr>
+                    <%end%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <%end%>
+    <div class="row">
+        <h3>List of restaurants for the event</h3>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Description</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% @chosen.each_with_index do |restaurant, index| %>
+                    <tr scope="row">
+                        <td><%= index+1 %></td>
+                        <td><%= restaurant.restaurant_name %></td>
+                        <td><%= restaurant.restaurant_location %></td>
+                        <td><%= restaurant.restaurant_desc %></td>
+                    </tr>
+                <%end%>
+            </tbody>
+        </table>
+    </div>
 </div>
-<% end %>
 
+<!-- MODAL -->
 
-<%= render 'restaurants/list', restaurant: @restaurant %>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Winning Restaurant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <% @winner.each do |restaurant, index| %>
+                            <tr scope="row">
+                                <td><%= restaurant.restaurant_name %></td>
+                                <td><%= restaurant.restaurant_location %></td>
+                                <td><%= restaurant.restaurant_desc %></td>
+                            </tr>
+                        <%end%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
