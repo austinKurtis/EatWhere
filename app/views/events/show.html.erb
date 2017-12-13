@@ -74,9 +74,11 @@
         <% if current_user.events.include?(@event) %>
         <div class="col-6">
             <div class="rightcolpos">
-                <div class="row justify-content-center">
-                    <h5>You've alreaded chosen a restaurant for this event</h5>
-                </div>
+                <% if @has_picked >= 1%>
+                    <div class="row justify-content-center">
+                        <h5>You've alreaded chosen a restaurant for this event</h5>
+                    </div>
+                <%else%>
             <div class="row justify-content-center">
                 <h4>Add Your Restaurant to the event</h4>
             </div>
@@ -108,6 +110,7 @@
                     <%end%>
                 </tbody>
             </table>
+            <% end %>
         </div>
         <% else %>
         <% end %>
@@ -184,7 +187,4 @@
             </div>
         </div>
     <% end %>
-    <% puts @next %>
-    
-    <% puts @has_picked %>
 

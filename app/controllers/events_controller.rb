@@ -24,7 +24,8 @@ class EventsController < ApplicationController
     @winner = Restaurant.joins('INNER JOIN events WHERE events.event_winner = restaurants.id AND events.id = ', params[:id])
     
     @next = puts "****next****"
-    # @has_picked = Restmember.first('FROM restmembers WHERE events.id = ', params[:id])
+    # @has_picked = Restmember.where('event_id = ', params[:id],'AND user_id = 1').count
+    @has_picked = Restmember.where('user_id = ? AND event_id = ?', current_user, params[:id]).count
 
     # @selectmade = Restmember.joins('INNER JOIN events WHERE', current_user == ' restmembers.user_id AND restmembers.event_id = ', params[:id])
   end
@@ -85,14 +86,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def self.restmembers
-    @event = event_params[:id]
-    # @restmembers = Restmember.where('event_id ==', a, 'AND user_id ==', b).count
-    # @restmembers = Restmember.where('event_id == 20 AND user_id == 1').count
-
-    puts @event
-    
-  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
