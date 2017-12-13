@@ -1,8 +1,8 @@
+
 <%= form_with(model: restaurant, local: true) do |form| %>
   <% if restaurant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
-
       <ul>
       <% restaurant.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,61 +10,30 @@
       </ul>
     </div>
   <% end %>
-<div class="container">
-  <div class="col-8">
-    <div class="field row">
-      <div class="col text-right frmLabel">
-        <%= form.label "Name" %>
-      </div>
-      <div class="col">
-        <%= form.text_field :restaurant_name %>
-      </div>
-    </div>
-
-    <div class="field row">
-      <div class="col text-right frmLabel">
-        <%= form.label "Location" %>
-      </div>
-      <div class="col">
-        <%= form.text_area :restaurant_location, :rows => 3, :placeholder => "123 Any Street\r\Apt Number\r\Anytown, SI 12345" %>
-      </div>
-    </div>
-
-    <div class="field row">
-      <div class="col text-right frmLabel">
-        <%= form.label "Description" %>
-      </div>
-      <div class="col">
-        <%= form.text_area :restaurant_desc, :rows => 5 %>
-      </div>
-    </div>
-
-    <div class="field row">
-      <div class="col text-right frmLabel">
-        <%= form.label "Phone" %>
-      </div>
-      <div class="col">
-        <%= form.text_field :restaurant_phone %>
-      </div>
-    </div>
-
-    <div class="field row">
-      <div class="col text-right frmLabel">
-        <%= form.label "Avg Meal Price" %>
-      </div>
-      <div class="col">
-        <%= form.text_field :restaurant_price %>
-      </div>
-    </div>
-
-    <%= form.hidden_field :user_id, :value => current_user.id  %>
-    <div class="row">
-      <div>
-        <%= button_tag(type: 'submit', class: "btn btn-success submit") do %>
-          <i class="fa fa-floppy-o"></i>  Submit
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+  <div class="form-group">
+    <%= form.label "Name", class: "col-form-label" %>
+    <%= form.text_field :restaurant_name, class: "form-control" %>
   </div>
-</div>
+  <div class="form-group">
+    <%= form.label "Location", class: "col-form-label" %>
+    <%= form.text_area :restaurant_location, :rows => 3, class: "form-control", :placeholder => "123 Any Street\r\Apt Number\r\Anytown, SI 12345" %>
+  </div>
+  <div class="form-group">
+    <%= form.label "Description", class: "col-form-label" %>
+    <%= form.text_area :restaurant_desc, :rows => 5, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label "Phone", class: "col-form-label" %>
+    <%= form.text_field :restaurant_phone, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label "Avg Meal Price", class: "col-form-label" %>
+    <%= form.text_field :restaurant_price, class: "form-control" %>
+  </div>
+    <%= form.hidden_field :user_id, :value => current_user.id%>
+    <div class="form-group">
+      <%= button_tag(type: 'submit', class: "btn btn-success submit") do %>
+        <i class="fa fa-floppy-o"></i>  SUBMIT
+      <% end %>
+    </div>
+<% end %>

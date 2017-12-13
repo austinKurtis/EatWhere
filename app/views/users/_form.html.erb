@@ -1,46 +1,52 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container">
+  <div class="col-10">
+    <%= form_with(model: user, local: true) do |form| %>
+      <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
-  
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
-  
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
+      <div class="form-group">
+        <%= form.label :first_name, "FIRST NAME:    " %>
+        <%= form.text_field :first_name, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :last_name, "LAST NAME:    " %>
+        <%= form.text_field :last_name, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :phone, "PHONE:    ", class: "col-form-label" %>
+        <%= form.text_field :phone, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+      <div class="form-group">
+        <%= form.label :email, "EMAIL:    ", class: "col-form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
+      <div class="form-group">
+        <%= form.label :password, "PASSWORD:    ", class: "col-form-label" %>
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
+      <div class="form-group">
+        <%= form.label :password_confirmation, "PASSWORD CONFIRMATION:    ", class: "col-form-label" %>
+        <%= form.password_field :password_confirmation, class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="form-group">
+          <%= button_tag(type: 'submit', class: "btn btn-success submit") do %>
+          <i class="fa fa-floppy-o"></i>  SUBMIT
+        <% end %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

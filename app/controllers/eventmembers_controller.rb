@@ -15,7 +15,7 @@ class EventmembersController < ApplicationController
 
   # GET /eventmembers/new
   def new
-    @event = Event.find( params[:event_id])
+    @event = Event.find( params[:event_id] )
     @eventmember = Eventmember.new({event: event})
   end
 
@@ -28,6 +28,14 @@ class EventmembersController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @eventmember = Eventmember.new(eventmember_params)
+    # respond_to do |format|
+    #   if @eventmember.save
+    #     format.html { redirect_to @event }
+    #     format.json { render :show, status: :created, location: @event }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @eventmember.errors, status: :unprocessable_entity }
+    #   end
   end
 
   # # PATCH/PUT /eventmembers/1
@@ -49,7 +57,7 @@ class EventmembersController < ApplicationController
   def destroy
     @eventmember.destroy
     respond_to do |format|
-      format.html { redirect_to @event }
+      format.html { redirect_to event_params }
       format.json { head :no_content }
     end
   end

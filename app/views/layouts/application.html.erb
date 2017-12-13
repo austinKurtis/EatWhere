@@ -18,33 +18,39 @@
         <div class="d-flex justify-content-start">
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Restaurants
+                RESTAURANTS
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button"><%= link_to "Your Restaurants", restaurants_path %></button>
-                <button class="dropdown-item" type="button"><%= link_to "Add New Restaurant", new_restaurant_path %></button>
+                <button class="dropdown-item" type="button"><%= link_to "YOUR RESTAURANTS", restaurants_path %></button>
+                <button class="dropdown-item" type="button"><%= link_to "ADD NEW RESTAURANT", new_restaurant_path %></button>
               </div>
             </div>
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Events
+                EVENTS
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button"><%= link_to "All Events", events_path %></button>                  
-                <button class="dropdown-item" type="button"><%= link_to "Your Events", events_path(current_user.id) %></button>
-                <button class="dropdown-item" type="button"><%= link_to "Add An Event", new_event_path %></button>
+                <button class="dropdown-item" type="button"><%= link_to "ALL EVENTS", events_path %></button>                  
+                <button class="dropdown-item" type="button"><%= link_to "YOUR EVENTS", events_path(current_user.id) %></button>
+                <button class="dropdown-item" type="button"><%= link_to "ADD AN EVENT", new_event_path %></button>
               </div>
             </div>
           </div>
           <div class="d-flex justify-content-end">
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle login" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Hello <%= current_user.first_name %> <%= current_user.last_name %>
+                HELLO <%= current_user.first_name.upcase %>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button"><%= link_to "My Profile", user_path(current_user.id) %></button>              
-                <button class="dropdown-item" type="button"><%= link_to "Edit Profile", edit_user_path(current_user.id) %></button>
-                <button class="dropdown-item" type="button"><%= link_to "Log out", user_sessions_destroy_path %></button>
+                <%= button_tag(type: 'button', class: "dropdown-item") do %>
+                  <%= link_to "MY PROFILE", user_path(current_user.id) %>
+                <% end %>
+                <%= button_tag(type: 'button', class: "dropdown-item") do %>
+                  <%= link_to "EDIT PROFILE", edit_user_path(current_user.id) %>
+                <% end %>
+                <%= button_tag(type: 'button', class: "dropdown-item") do %>
+                  <%= link_to "LOG OUT", user_sessions_destroy_path %>
+                <% end %>
               </div>
             </div>
           </div>
