@@ -1,6 +1,18 @@
-<h1>Editing Event</h1>
-
-<%= render 'form', event: @event %>
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<div class="row pageHead">
+    <h1>Editing Event</h1>
+</div>
+<div class="col-6 col-centered">
+    <div class="formBox form-group">   
+        <%= render 'form', event: @event %>
+    </div>
+    <div class="row justify-content-end formPageBtns">
+        <button type="button" class="btn btn-success text-white form-group">
+            <i class="fa fa-window-maximize" aria-hidden="true"></i>
+            <%= link_to '  SHOW', @event, class: 'text-white' %>
+        </button>
+        <button type="button" class="btn btn-danger text-white form-group btnLefttMar">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <%= link_to '  CLOSE', events_path, class: 'text-white' %>
+        </button>
+    </div>
+</div>

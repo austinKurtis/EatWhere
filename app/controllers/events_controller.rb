@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    # @events = Event.where(:event_time > Time.now)
   end
 
   # GET /events/1
@@ -19,10 +20,11 @@ class EventsController < ApplicationController
     end
     
     @chosen = Restaurant.joins('INNER JOIN events INNER JOIN restmembers WHERE events.id = restmembers.event_id AND restaurants.id = restmembers.restaurant_id AND events.id = ', params[:id])
-    
-
     @random_choose = @chosen.order('RANDOM()').first
     @winner = Restaurant.joins('INNER JOIN events WHERE events.event_winner = restaurants.id AND events.id = ', params[:id])
+    
+    @next = puts "****next****"
+    # @has_picked = Restmember.first('FROM restmembers WHERE events.id = ', params[:id])
 
     # @selectmade = Restmember.joins('INNER JOIN events WHERE', current_user == ' restmembers.user_id AND restmembers.event_id = ', params[:id])
   end
@@ -31,6 +33,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.eventmembers.build
+    @event.restmembers.build
   end
 
   # GET /events/1/edit
@@ -74,6 +77,7 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    @event.eventmembers.build
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_path }
@@ -81,6 +85,14 @@ class EventsController < ApplicationController
     end
   end
 
+  def self.restmembers
+    @event = event_params[:id]
+    # @restmembers = Restmember.where('event_id ==', a, 'AND user_id ==', b).count
+    # @restmembers = Restmember.where('event_id == 20 AND user_id == 1').count
+
+    puts @event
+    
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

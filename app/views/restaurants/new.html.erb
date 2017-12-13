@@ -1,8 +1,16 @@
-<h1>Add New Restaurant</h1>
-
-<%= render 'form', restaurant: @restaurant %>
-<div class="row">
-    <div class="col-4 text-center">
-        <%= link_to '   Return To List', restaurants_path, class: 'fa fa-arrow-circle-left text-primary' %>
+<div class="row pageHead">
+    <h1>Add New Restaurant</h1>
+</div>
+<div class="col-6 col-centered">
+    <div class="formHeight">
+        <div class="formBox form-group">
+            <%= render 'form', restaurant: @restaurant %>
+        </div>
+        <div class="row justify-content-end formPageBtns">
+            <button type="button" class="btn btn-danger text-white">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <%= link_to '  CLOSE', restaurants_path, class: 'text-white' %>
+            </button>
+        </div>
     </div>
 </div>

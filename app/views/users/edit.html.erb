@@ -1,14 +1,22 @@
-<h1>Editing User</h1>
+<div class="row pageHead">
+    <h1>Editing User</h1>
+</div>
+<div class="col-6 col-centered">
+    <div class="formHeight">
+        <div class="formBox form-group">
+            <%= render 'form', user: @user %>
+        </div>
+        <div class="row justify-content-end formPageBtns">
+            <button type="button" class="btn btn-success text-white">
+                <i class="fa fa-window-maximize" aria-hidden="true"></i>
+                <%= link_to '  SHOW', @user, class: 'text-white' %>
+            </button>
+            <button type="button" class="btn btn-danger text-white">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <%= link_to '  CLOSE', events_path, class: 'text-white' %>
+            </button>
+        </div>
+    </div>
+</div>  
 
-<%= render 'form', user: @user %>
 
-<button type="button" class="btn btn-default btn-lg">
-    <%= link_to @user do %>
-        <i class="fa fa-window-maximize text-success" aria-hidden="true"> Show</i>    
-    <% end %>  
-</button>
-<button type="button" class="btn btn-default btn-lg">
-    <%= link_to root_path do %>
-        <i class="fa fa-times text-danger" aria-hidden="true"> Close</i>
-    <% end %>  
-</button>

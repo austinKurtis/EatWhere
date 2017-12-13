@@ -12,6 +12,7 @@ class RestmembersController < ApplicationController
   # GET /restmembers/1.json
   def show
     @restmembers = Restmember.find(params[:event_id])
+    # @userRestPics = Restmembers.first
   end
 
   # GET /restmembers/new
@@ -20,7 +21,7 @@ class RestmembersController < ApplicationController
     @event = Event.find(params[:event_id])
     @restmember = Restmember.new({event: event})
   end
-
+  
   # GET /restmembers/1/edit
   def edit
   end
@@ -33,7 +34,7 @@ class RestmembersController < ApplicationController
     @restmember = Restmember.new(restmember_params)
     respond_to do |format|
       if @restmember.save
-        format.html { redirect_to events_path }
+        format.html { redirect_to @event }
         format.json { render :show, status: :created, location: @restmember }
       else
         format.html { render :new }
