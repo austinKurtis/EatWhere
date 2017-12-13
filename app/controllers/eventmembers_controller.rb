@@ -15,7 +15,7 @@ class EventmembersController < ApplicationController
 
   # GET /eventmembers/new
   def new
-    @event = Event.find params[:event_id]
+    @event = Event.find( params[:event_id])
     @eventmember = Eventmember.new({event: event})
   end
 
@@ -26,7 +26,7 @@ class EventmembersController < ApplicationController
   # POST /eventmembers
   # POST /eventmembers.json
   def create
-    @event = Event.find params[:event_id]
+    @event = Event.find(params[:event_id])
     @eventmember = Eventmember.new(eventmember_params)
   end
 
@@ -49,7 +49,7 @@ class EventmembersController < ApplicationController
   def destroy
     @eventmember.destroy
     respond_to do |format|
-      format.html { redirect_to eventmembers_url }
+      format.html { redirect_to @event }
       format.json { head :no_content }
     end
   end

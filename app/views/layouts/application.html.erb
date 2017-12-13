@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ang="en">
   <head>
     <title>EatWhere</title>
     <%= csrf_meta_tags %>
@@ -22,7 +22,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <button class="dropdown-item" type="button"><%= link_to "Your Restaurants", restaurants_path %></button>
-                <button class="dropdown-item" type="button"><%= link_to "Add a Restaurant", new_restaurant_path %></button>
+                <button class="dropdown-item" type="button"><%= link_to "Add New Restaurant", new_restaurant_path %></button>
               </div>
             </div>
             <div class="dropdown">
@@ -32,7 +32,7 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <button class="dropdown-item" type="button"><%= link_to "All Events", events_path %></button>                  
                 <button class="dropdown-item" type="button"><%= link_to "Your Events", events_path(current_user.id) %></button>
-                <button class="dropdown-item" type="button"><%= link_to "Add an Event", new_event_path %></button>
+                <button class="dropdown-item" type="button"><%= link_to "Add An Event", new_event_path %></button>
               </div>
             </div>
           </div>
@@ -66,10 +66,13 @@
         <% end %>
       </nav>
     </header>
-      <div>
+      <div class="mainContainer">
         <p id="notice"><%= flash[:notice] %></p>
         <p id="alert"><%= flash[:alert] %></p>
       </div>
     <%= yield %>
+    <footer class="footer">
+
+    </footer>
   </body>
 </html>

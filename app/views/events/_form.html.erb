@@ -24,6 +24,9 @@
     <%= form.label "Description: " %>
     <%= form.text_area :event_desc, :rows => 3 %>
   </div>
+  
+  <%= ff.hidden_field :event_winner, :value => 0  %>
+
   <%= form.fields_for :eventmembers do |ff| %>
     <%= ff.hidden_field :user_id, :value => current_user.id  %>
     <%= ff.hidden_field :event_id, :value => :id  %>

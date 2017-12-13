@@ -8,6 +8,7 @@ class User < ApplicationRecord
       validates :email, uniqueness: true
 
       has_many :restaurants
+      has_many :restmembers
       has_many :eventmembers
       has_many :events, through: :eventmembers
 end

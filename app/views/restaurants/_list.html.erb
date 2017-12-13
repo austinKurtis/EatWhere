@@ -13,13 +13,13 @@
     
     <tbody>
         <% @restaurants.each do |restaurant| %>
-        <tr>
-            <td><%= restaurant.restaurant_name %></td>
-            <td><%= restaurant.restaurant_location %></td>
-            <td><%= restaurant.restaurant_desc %></td>
-            <td><%= restaurant.restaurant_phone %></td>
-            <td><%= restaurant.restaurant_price %></td>
-        </tr>
-        <% end %>
+            <tr>
+                <td><%= restaurant.restaurant_name %></td>
+                <td><%= restaurant.restaurant_location %></td>
+                <td><%= restaurant.restaurant_desc %></td>
+                <td><%= restaurant.restaurant_phone %></td>
+                <td><%= restaurant.restaurant_price %></td>
+            </tr>
+        <%end%>
     </tbody>
 </table>

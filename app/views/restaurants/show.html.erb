@@ -1,29 +1,60 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-2 text-right">
+      <strong>Restaurant name:</strong>
+    </div>
+    <div class="col-2">
+      <%= @restaurant.restaurant_name %>
+    </div>
+  </div>
 
-<p>
-  <strong>Restaurant name:</strong>
-  <%= @restaurant.restaurant_name %>
-</p>
+  <div class="row">
+    <div class="col-2 text-right"> 
+      <strong>Location:</strong>
+    </div>
+    <div class="col-2">
+      <%= @restaurant.restaurant_location %>
+    </div>
+  </div>
 
-<p>
-  <strong>Restaurant location:</strong>
-  <%= @restaurant.restaurant_location %>
-</p>
+  <div class="row">
+    <div class="col-2 text-right">
+      <strong>Description:</strong>
+    </div>
+    <div class="col-2">
+      <%= @restaurant.restaurant_desc %>
+    </div>
+  </div>
 
-<p>
-  <strong>Restaurant desc:</strong>
-  <%= @restaurant.restaurant_desc %>
-</p>
+  <div class="row">
+    <div class="col-2 text-right">
+    <strong>Phone:</strong>
+    </div>
+    <div class="col-2">
+      <%= @restaurant.restaurant_phone %>
+    </div>
+  </div class="row">
 
-<p>
-  <strong>Restaurant phone:</strong>
-  <%= @restaurant.restaurant_phone %>
-</p>
+  <div class="row">
+    <div class="col-2 text-right">
+      <strong>Price:</strong>
+    </div>
+    <div class="col-2">
+      <%= @restaurant.restaurant_price %>
+    </div>
+  </div>
+  <div class="row col-4 justify-content-center">
+    <button type="button" class="btn btn-default btn-lg">
+      <%= link_to edit_restaurant_path(@restaurant) do %>
+        <i class="fa fa-pencil-square-o text-warning" aria-hidden="true"> Edit</i>    
+      <% end %>  
+    </button>
 
-<p>
-  <strong>Restaurant price:</strong>
-  <%= @restaurant.restaurant_price %>
-</p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+    <button type="button" class="btn btn-default btn-lg">
+      <%= link_to restaurants_path do %>
+        <i class="fa fa-times text-danger" aria-hidden="true"> Close</i>
+      <% end %>  
+    </button>
+  </div>
+</div>

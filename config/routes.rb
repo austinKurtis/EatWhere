@@ -6,14 +6,13 @@ Rails.application.routes.draw do
   root :to => 'home#index'
   resources :user_sessions
   resources :users
-  # resources :restmembers
-  # resources :eventmembers
+  resources :restaurants
   resources :events, shallow: true do
     resources :eventmembers
     resources :restmembers
   end
 
-  resources :restaurants
+  
   resources :home
 
   get 'login' => 'user_sessions#new', :as => :login

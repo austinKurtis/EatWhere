@@ -10,35 +10,61 @@
       </ul>
     </div>
   <% end %>
+<div class="container">
+  <div class="col-8">
+    <div class="field row">
+      <div class="col text-right frmLabel">
+        <%= form.label "Name" %>
+      </div>
+      <div class="col">
+        <%= form.text_field :restaurant_name %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label "Name" %>
-    <%= form.text_field :restaurant_name %>
+    <div class="field row">
+      <div class="col text-right frmLabel">
+        <%= form.label "Location" %>
+      </div>
+      <div class="col">
+        <%= form.text_area :restaurant_location, :rows => 3, :placeholder => "123 Any Street\r\Apt Number\r\Anytown, SI 12345" %>
+      </div>
+    </div>
+
+    <div class="field row">
+      <div class="col text-right frmLabel">
+        <%= form.label "Description" %>
+      </div>
+      <div class="col">
+        <%= form.text_area :restaurant_desc, :rows => 5 %>
+      </div>
+    </div>
+
+    <div class="field row">
+      <div class="col text-right frmLabel">
+        <%= form.label "Phone" %>
+      </div>
+      <div class="col">
+        <%= form.text_field :restaurant_phone %>
+      </div>
+    </div>
+
+    <div class="field row">
+      <div class="col text-right frmLabel">
+        <%= form.label "Avg Meal Price" %>
+      </div>
+      <div class="col">
+        <%= form.text_field :restaurant_price %>
+      </div>
+    </div>
+
+    <%= form.hidden_field :user_id, :value => current_user.id  %>
+    <div class="row">
+      <div>
+        <%= button_tag(type: 'submit', class: "btn btn-success submit") do %>
+          <i class="fa fa-floppy-o"></i>  Submit
+        <% end %>
+      </div>
+    </div>
+  <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label "Location" %>
-    <%= form.text_area :restaurant_location, :rows => 3, :placeholder => "123 Any Street\r\Apt Number\r\Anytown, SI 12345" %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Description" %>
-    <%= form.text_area :restaurant_desc, :rows => 5 %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Phone" %>
-    <%= form.text_field :restaurant_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Price" %>
-    <%= form.text_field :restaurant_price %>
-  </div>
-
-  <%= form.hidden_field :user_id, :value => current_user.id  %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
