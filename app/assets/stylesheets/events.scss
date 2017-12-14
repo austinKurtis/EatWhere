@@ -9,9 +9,18 @@
 }
 
 .col-border {
-    border-right: 1px solid #d9d9d9;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .eventTop {
     margin-top: 10px;
+    color: white;
+}
+
+.eventBottom {
+    color: white;
+}
+
+hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }

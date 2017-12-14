@@ -4,9 +4,9 @@ class EventmembersController < ApplicationController
 
   # GET /eventmembers
   # GET /eventmembers.json
-  def index
-    @eventmembers = Eventmember.all
-  end
+  # def index
+  #   @eventmembers = Eventmember.all
+  # end
 
   # GET /eventmembers/1
   # GET /eventmembers/1.json

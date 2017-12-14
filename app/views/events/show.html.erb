@@ -55,10 +55,13 @@
                     <% if @event.event_winner.nil? || @event.event_winner == 0 %>
                         <div class="row">
                             <%= form_with(model: @event, local: true) do |f| %>
+                                
+                                <%= f.hidden_field :event_winner, :value => @random_choose[:id].to_i  %>
                                 <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
                                     <i class="fa fa-calendar-check-o"></i> Where You'll Be Eating
                                 <% end %>
                             <% end %>
+
                         </div>
                     <% else %>
                         <div class="row">       
@@ -117,7 +120,7 @@
         </div>
     </div>
     <hr>
-    <div class="col-11 col-centered">
+    <div class="col-11 col-centered eventBottom">
     <% if @chosen.empty?%>
         <h3>Add some restaurants to make this event fun.</h3>
     <% else %>
@@ -187,4 +190,3 @@
             </div>
         </div>
     <% end %>
-

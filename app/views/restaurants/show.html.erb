@@ -1,9 +1,11 @@
-<div class="col-12">
+<div class="row pageHead">
   <p id="notice"><%= notice %></p>
+  <h1><%= @restaurant.restaurant_name %></h1>
+</div>
+<div class="col-12">
   <table class="table table-striped table-dark">
     <thead>
       <tr>
-        <th scope="col" class="text-center">Name</th>
         <th scope="col" class="text-center">Location</th>
         <th scope="col" class="text-center">Description</th>
         <th scope="col" class="text-center">Phone</th>
@@ -14,7 +16,6 @@
 
     <tbody>
       <tr scope="row">
-        <td class="text-center"><%= @restaurant.restaurant_name %></td>
         <td class="text-center"><%= @restaurant.restaurant_location %></td>
         <td class="text-center"><%= @restaurant.restaurant_desc %></td>
         <td class="text-center"><%= @restaurant.restaurant_phone %></td>
