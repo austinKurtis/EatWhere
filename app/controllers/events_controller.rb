@@ -5,8 +5,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-    # @events = Event.where(:event_time > Time.now)
+    @events = Event.where("event_time > ?", DateTime.now).order("event_time ASC")
+  end
+
+  def user
+    @event = Event.where('user_id = ? AND event_time > ?', current_user, DateTime.now).order("event_time ASC")
   end
 
   # GET /events/1
@@ -22,8 +25,6 @@ class EventsController < ApplicationController
     @chosen = Restaurant.joins('INNER JOIN events INNER JOIN restmembers WHERE events.id = restmembers.event_id AND restaurants.id = restmembers.restaurant_id AND events.id = ', params[:id])
     @random_choose = @chosen.order('RANDOM()').first
     @winner = Restaurant.joins('INNER JOIN events WHERE events.event_winner = restaurants.id AND events.id = ', params[:id])
-    
-    @next = puts "****next****"
     # @has_picked = Restmember.where('event_id = ', params[:id],'AND user_id = 1').count
     @has_picked = Restmember.where('user_id = ? AND event_id = ?', current_user, params[:id]).count
 

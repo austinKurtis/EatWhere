@@ -1,5 +1,13 @@
     <div class="row pageHead">
-        <h1><%= @event.event_name %></h1>
+        <div class="col d-flex justify-content-start">
+            <h1><%= @event.event_name %></h1>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <button type="button" class="btn closebtn text-white">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <%= link_to '  CLOSE', events_path, class: 'text-white' %>
+            </button>
+        </div>
     </div>
     <div class="row eventTop">
         <div class="col-6 col-border">
@@ -43,26 +51,25 @@
                         <%= link_to '  EDIT', edit_event_path(@event), class: 'text-black' %>
                     </button>
                 <% end %>
-                <button type="button" class="btn btn-danger text-white">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                    <%= link_to '  CLOSE', events_path, class: 'text-white' %>
-                </button>
             </div>
             <br>
                 <% if @chosen.empty?%>
 
                 <% else %>
                     <% if @event.event_winner.nil? || @event.event_winner == 0 %>
-                        <div class="row">
-                            <%= form_with(model: @event, local: true) do |f| %>
-                                
-                                <%= f.hidden_field :event_winner, :value => @random_choose[:id].to_i  %>
-                                <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-                                    <i class="fa fa-calendar-check-o"></i> Where You'll Be Eating
+                        <% if DateTime.now > @event.event_time %>
+                            <div class="row">
+                                <%= form_with(model: @event, local: true) do |f| %>
+                                    
+                                    <%= f.hidden_field :event_winner, :value => @random_choose[:id].to_i  %>
+                                    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+                                        <i class="fa fa-calendar-check-o"></i> Where You'll Be Eating
+                                    <% end %>
                                 <% end %>
-                            <% end %>
-
-                        </div>
+                            </div>
+                        <%else%>
+                            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="DON'T RUSH" data-content="This button will be active 2 hours before the event">Where You'll Be Eating</button>
+                        <%end%>
                     <% else %>
                         <div class="row">       
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -80,6 +87,7 @@
                 <% if @has_picked >= 1%>
                     <div class="row justify-content-center">
                         <h5>You've alreaded chosen a restaurant for this event</h5>
+                        <p>You can make your random selection by pressing the "Where You'll Be Eating" button.</p>
                     </div>
                 <%else%>
             <div class="row justify-content-center">
@@ -190,3 +198,9 @@
             </div>
         </div>
     <% end %>
+<% puts DateTime.now %>
+<% puts DateTime.now - 120.minutes %>
+<% puts @event.event_time %>
+
+
+<% puts DateTime.now > @event.event_time %>
