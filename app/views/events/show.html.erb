@@ -57,7 +57,7 @@
 
                 <% else %>
                     <% if @event.event_winner.nil? || @event.event_winner == 0 %>
-                        <% if DateTime.now > @event.event_time %>
+                        <% if DateTime.now.to_i > @event.event_time.to_i - 3600 %>
                             <div class="row">
                                 <%= form_with(model: @event, local: true) do |f| %>
                                     
@@ -68,7 +68,12 @@
                                 <% end %>
                             </div>
                         <%else%>
-                            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="DON'T RUSH" data-content="This button will be active 2 hours before the event">Where You'll Be Eating</button>
+                        <script>
+                            $(function () {
+                                $('[data-toggle="popover"]').popover()
+                                })
+                        </script>
+                            <button type="button" class="btn btn-secondary" data-toggle="popover" title="DON'T RUSH" data-content="This button will be active 2 hours before the event"><i class="fa fa-calendar-check-o"></i> Where You'll Be Eating</button>
                         <%end%>
                     <% else %>
                         <div class="row">       
@@ -198,9 +203,3 @@
             </div>
         </div>
     <% end %>
-<% puts DateTime.now %>
-<% puts DateTime.now - 120.minutes %>
-<% puts @event.event_time %>
-
-
-<% puts DateTime.now > @event.event_time %>
