@@ -16,70 +16,105 @@
           <h1 class="navLogo">EAT WHERE</h1>
         </div>
         <div class="d-flex justify-content-start">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                RESTAURANTS
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button"><%= link_to "YOUR RESTAURANTS", restaurants_path %></button>
-                <button class="dropdown-item" type="button"><%= link_to "ADD NEW RESTAURANT", new_restaurant_path %></button>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                EVENTS
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button"><%= link_to "ALL EVENTS", events_path %></button>                  
-                <button class="dropdown-item" type="button"><%= link_to "YOUR EVENTS", events_path(current_user.id) %></button>
-                <button class="dropdown-item" type="button"><%= link_to "ADD AN EVENT", new_event_path %></button>
-              </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              RESTAURANTS
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item" type="button"><%= link_to "YOUR RESTAURANTS", restaurants_path %></button>
+              <button class="dropdown-item" type="button"><%= link_to "ADD NEW RESTAURANT", new_restaurant_path %></button>
             </div>
           </div>
-          <div class="d-flex justify-content-end">
-            <div class="dropdown">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle navdrops" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              EVENTS
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item" type="button"><%= link_to "ALL EVENTS", events_path %></button>                  
+              <button class="dropdown-item" type="button"><%= link_to "YOUR EVENTS", events_user_path %></button>
+              <button class="dropdown-item" type="button"><%= link_to "ADD AN EVENT", new_event_path %></button>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle login" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              HELLO <%= current_user.first_name.upcase %>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <%= button_tag(type: 'button', class: "dropdown-item") do %>
+                <%= link_to "MY PROFILE", user_path(current_user.id) %>
+              <% end %>
+              <%= button_tag(type: 'button', class: "dropdown-item") do %>
+                <%= link_to "EDIT PROFILE", edit_user_path(current_user.id) %>
+              <% end %>
+              <%= button_tag(type: 'button', class: "dropdown-item") do %>
+                <%= link_to "LOG OUT", user_sessions_destroy_path %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="d-flex justify-content-start">
+          <h1 class="navLogo">Eat Where</h1>
+        </div>
+        <div class="d-flex justify-content-end">
+          <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle login" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                HELLO <%= current_user.first_name.upcase %>
+                  Login/Register
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <%= button_tag(type: 'button', class: "dropdown-item") do %>
-                  <%= link_to "MY PROFILE", user_path(current_user.id) %>
-                <% end %>
-                <%= button_tag(type: 'button', class: "dropdown-item") do %>
-                  <%= link_to "EDIT PROFILE", edit_user_path(current_user.id) %>
-                <% end %>
-                <%= button_tag(type: 'button', class: "dropdown-item") do %>
-                  <%= link_to "LOG OUT", user_sessions_destroy_path %>
-                <% end %>
-              </div>
-            </div>
+                  <button class="dropdown-item" type="button"><%= render 'user_sessions/form_nav' %></button>
+                  <button class="dropdown-item" type="button"><%= link_to "Register", new_user_path %></button>
+                </div>
           </div>
-        <% else %>
-          <div class="d-flex justify-content-start">
-            <h1 class="navLogo">Eat Where</h1>
-          </div>
-          <div class="d-flex justify-content-end">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle login" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Login/Register
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button"><%= render 'user_sessions/form' %></button>
-                <button class="dropdown-item" type="button"><%= link_to "Register", new_user_path %></button>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </nav>
-    </header>
-      <div class="mainContainer">
-        <p id="notice"><%= flash[:notice] %></p>
-        <p id="alert"><%= flash[:alert] %></p>
-        <%= yield %>
+        </div>
+      <% end %>
+    </nav>
+  </header>
+    <div class="mainContainer">
+      <p id="notice"><%= flash[:notice] %></p>
+      <p id="alert"><%= flash[:alert] %></p>
+      <%= yield %>
     </div>
     
     <footer class="footer">
-
+      <div class="row footHeader d-flex justify-content-center">
+        <h4 class="text-center">What this app does</h4>
+      </div>
+      <hr>
+      <div class="row footmid">
+        <div class="col-6 foot-border">
+          <div class="footRightText">
+            <div>
+              <h6>Restaurants</h6>
+              <p>Add New Restaurants</p>
+              <p>Edit Existing Restaurants</p>
+              <p>Delete Existing Restaurants</p>
+            </div>  
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="footLeftText">
+              <div>
+                <h6>Events</h6>
+                <p>Add New Events</p>
+                <p>Edit Existing Events</p>
+                <p>Delete Existing Events</p>
+                <p>Events will pick at random from the list of added restaurants</p>
+              </div> 
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row footbottom">
+        <div class="col d-flex justify-content-start">  
+          <p>© 2017 Austin Kurtis</p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <a href="https://github.com/austinKurtis/EatWhere"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

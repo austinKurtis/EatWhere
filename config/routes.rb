@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'user_sessions/new'
   get 'user_sessions/create'
   get 'user_sessions/destroy'
-  
+  get 'events/user', to: 'events#user'
   root :to => 'home#index'
   resources :user_sessions
   resources :users

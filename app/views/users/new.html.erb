@@ -1,5 +1,18 @@
-<h1>New User</h1>
-
-<%= render 'form', user: @user %>
-
-<%= link_to 'Back', users_path %>
+<div class="row pageHead">
+    <div class="col d-flex justify-content-start">
+        <h1>New User</h1>
+    </div>
+    <div class="col d-flex justify-content-end">
+        <button type="button" class="btn closebtn text-white">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <%= link_to '  CLOSE', root_path, class: 'text-white' %>
+        </button>    
+    </div>
+</div>
+<div class="col-6 col-centered">
+    <div class="formHeight">
+        <div class="formBox form-group">
+            <%= render 'form', user: @user %>
+        </div>
+    </div>
+</div>
