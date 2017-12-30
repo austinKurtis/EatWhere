@@ -1,6 +1,6 @@
 # Eat Where
 
-Welcome to Eat Where the fun way to take the guess work on where to eat. Add your favorite restaurants, create an event, let every one make their picks, and two hours before the event let us randomly select where you'll be dining. 
+Welcome to Eat Where the fun way to take the guess work on where to eat. Add your favorite restaurants, create an event, let everyone make their picks, and two hours before the event let us randomly select where you'll be dining. 
 
 - [Get Started](#get-started)
 - [Install](#install)
@@ -42,13 +42,13 @@ Welcome to Eat Where the fun way to take the guess work on where to eat. Add you
         'sass', '~> 3.5', '>= 3.5.3'
         'sorcery'
 
-    To get the needed gems to run this app. From the commandline: 
+    To get the needed gems to run this app. From the command line: 
     ```
     rails bundle install 
     ```
 
 ### Setup Database
-    After cloning or forking the repo and running bundle install, in terminal, run the following code to setup the database. The current confiruation adds 5 new tables.
+    After cloning or forking the repo and running bundle install, in terminal, run the following code to setup the database. The current configuration adds 5 new tables.
 
 **Build the Database**
     ```
@@ -65,7 +65,7 @@ Welcome to Eat Where the fun way to take the guess work on where to eat. Add you
         Last Name
         Phone Number
         Email Address
-        Passord
+        Password
         Password Confirmation
 
     The email address is checked for uniqueness to avoid duplicate user information.
@@ -139,7 +139,7 @@ Welcome to Eat Where the fun way to take the guess work on where to eat. Add you
         Edit
         Join
         Add Restaurant
-            Disapears after one added
+            Disappears after one added
         Choose winning restaurant
             Becomes active 2 hours before the event start
         Show Winning Restaurant
@@ -157,4 +157,5 @@ Create an [issue report](https://github.com/austinKurtis/EatWhere/issues/new)
 
 ## Meet The Dev
 - [Austin Kurtis](http://austinkurtis.com/)
+
 
