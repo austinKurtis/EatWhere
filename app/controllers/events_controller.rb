@@ -5,7 +5,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where("event_time > ?", DateTime.now).order("event_time ASC")
+    @events = Event.where("event_time >= ?", DateTime.yesterday).order("event_time ASC")
+    # @events = Event.all
   end
 
   def user

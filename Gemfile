@@ -34,7 +34,6 @@ gem 'sorcery'
 # Use Jquery because it is no longer natively included
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
 # Use Sorcery for user login
 gem 'sorcery'
 
